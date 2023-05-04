@@ -9,7 +9,7 @@ let pokemonList = [
         name: 'Charizard', 
         height: 1.7, 
         types: ['fire', 'flying'], 
-        abilities: [blaze, solar - power] 
+        abilities: ['blaze', 'solar - power'] 
     },
     { 
         name: 'Nidoqueen', 
