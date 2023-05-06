@@ -3,19 +3,19 @@
 
 let pokemonList = [
     { 
-        name: '<p>Poliwrath<p>', 
+        name: 'Poliwrath', 
         height: 1, 
         types: ['water', 'fighting'], 
         abilities: ['damp', 'water - absorb', 'swift - swim']
      },
     { 
-        name: '<p>Charizard<p>', 
+        name: 'Charizard', 
         height: 1.7, 
         types: ['fire', 'flying'], 
         abilities: ['blaze', 'solar - power'] 
     },
     { 
-        name: '<p>Nidoqueen<p>', 
+        name: 'Nidoqueen', 
         height: 1.3, 
         types: ['ground', 'poison'], 
         abilities: ['rivalry', 'sheer - force']
@@ -27,9 +27,9 @@ let pokemonList = [
 for (let i = 0; i < pokemonList.length; i++) 
 {
     if (pokemonList[i].height>1.5)
-    {document.write(pokemonList[i].name + "<span>  (height:" + pokemonList[i].height + ")" + "- Wow, that's big!!<span>")
+    {document.write("<p>" + pokemonList[i].name + "  (height:" + pokemonList[i].height + ")" + "- Wow, that's big!!</p>")
     }
-    else {document.write(pokemonList[i].name + "<span>  (height:" + pokemonList[i].height + ")<span>")
+    else {document.write("<p>" + pokemonList[i].name + "  (height:" + pokemonList[i].height + ")<p>")
     }
 }
     ;
