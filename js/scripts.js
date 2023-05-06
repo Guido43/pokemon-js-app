@@ -1,5 +1,5 @@
 //here the list of Pokemon characters with their attributes as key-value objects 
-//in the array, <p> added for css styling.
+//in the array.
 
 let pokemonList = [
     { 
@@ -22,7 +22,7 @@ let pokemonList = [
     }
 ];
 //here a for loop for enabling height 1.5+ to be considered as "big pokemon" pokemon
-//heights wrapped as <span> to enable css styling.
+//heights wrapped as <p> to enable css styling.
 
 for (let i = 0; i < pokemonList.length; i++) 
 {
