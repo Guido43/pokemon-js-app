@@ -1,8 +1,8 @@
 //here the list of Pokemon characters with their attributes as key-value objects 
 //in the array.
 
-let pokemonList = [
-    { 
+let pokemonList = 
+    [{ 
         name: 'Poliwrath', 
         height: 1, 
         types: ['water', 'fighting'], 
@@ -15,22 +15,26 @@ let pokemonList = [
         abilities: ['blaze', 'solar - power'] 
     },
     { 
-        name: 'Nidoqueen', 
+        name: 'Nidoqueen',
         height: 1.3, 
         types: ['ground', 'poison'], 
         abilities: ['rivalry', 'sheer - force']
-    }
-];
-//here a for loop for enabling height 1.5+ to be considered as "big pokemon" pokemon
-//heights wrapped as <p> to enable css styling.
+    },
+]
+//here an iife wrapping the [] as newly defined pokemonList2 with add and getAll functions
 
-for (let i = 0; i < pokemonList.length; i++) 
-{
-    if (pokemonList[i].height>1.5)
-    {document.write("<p>" + pokemonList[i].name + "  (height:" + pokemonList[i].height + ")" + "- Wow, that's big!!</p>")
-    }
-    else {document.write("<p>" + pokemonList[i].name + "  (height:" + pokemonList[i].height + ")<p>")
-    }
-}
-    ;
+let pokemonRepository = (function () {
+    let pokemonList = []
+
+function add(item){pokemonList.push(item);}
+function getAll () {return pokemonList;}
+return {add: add, getAll: getAll};
+})();
+//here a forEach loop refering to the protected 'item's in the function of the iife 
+pokemonList.forEach(function(item) {document.write("<p>" + item.name + " (height " + item.height + ")</p>");});
+
+
+
+
+
 
