@@ -26,8 +26,10 @@ let pokemonList =
 let pokemonRepository = (function () {
     let pokemonList = []
 
-function add(item){pokemonList.push(item);}
-function getAll () {return pokemonList;}
+function add(item){pokemonList.push(item);
+}
+function getAll () {return pokemonList;
+}
 return {add: add, getAll: getAll};
 })();
 //here a forEach loop refering to the protected 'item's in the function of the iife 
