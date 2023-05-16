@@ -24,25 +24,30 @@ function add(pokemon){repository.push(pokemon);
 }
 function getAll () {return repository; 
 }
+
+//created elements attached to ul in index, eventListener added for click and log//
 function addListItem(pokemon) {
     let pokemonList = document.querySelector(".pokemon-list");
     let listpokemon = document.createElement("li");
     let button = document.createElement("button");
-    button.addEventListener('click', function () {showDetails(pokemon)});
+    button.addEventListener('click', function () {showDetails(pokemon)
+    });
     button.innerText = pokemon.name;
     button.classList.add("button-class");
     listpokemon.appendChild(button);
     pokemonList.appendChild(listpokemon);
 }
-function showDetails(pokemon) {console.log(pokemon)};
+function showDetails(pokemon) {console.log(pokemon)
+};
 return {add: add, 
     getAll: getAll,
     addListItem: addListItem
-}
+};
 })();
 
 pokemonRepository.add({name: 'Pikachu', height: 1.4});
 console.log(pokemonRepository.getAll());
+
 //here a forEach loop refering to the protected 'item's in the function of the iife 
 pokemonRepository.getAll().forEach(function(pokemon){
     pokemonRepository.addListItem(pokemon);
