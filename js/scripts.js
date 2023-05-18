@@ -2,7 +2,7 @@
 //here an iife wrapping the [] as newly defined repository with add and getAll functions
 
 let pokemonRepository = (function () {
-    let repository = [{ 
+    let pokemonList = [{ 
         name: 'Nidoqueen',
         height: 1.3, 
         types: ['ground', 'poison'], 
@@ -20,9 +20,9 @@ let pokemonRepository = (function () {
         abilities: ['blaze', 'solar - power'] 
     },]
 
-function add(pokemon){repository.push(pokemon);
+function add(pokemon){pokemonList.push(pokemon);
 }
-function getAll () {return repository; 
+function getAll () {return pokemonList; 
 }
 
 //created elements attached to ul in index, eventListener added for click and log//
