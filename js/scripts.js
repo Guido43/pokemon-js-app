@@ -1,57 +1,89 @@
 
-//here an iife wrapping the [] as newly defined repository with add and getAll functions
-
+//An iife wrapping the [] as newly defined repository
 let pokemonRepository = (function () {
-    let pokemonList = [{ 
-        name: 'Nidoqueen',
-        height: 1.3, 
-        types: ['ground', 'poison'], 
-        abilities: ['rivalry', 'sheer - force']
-    },{ 
-        name: 'Poliwrath', 
-        height: 1, 
-        types: ['water', 'fighting'], 
-        abilities: ['damp', 'water - absorb', 'swift - swim']
-     },
-    { 
-        name: 'Charizard', 
-        height: 1.7, 
-        types: ['fire', 'flying'], 
-        abilities: ['blaze', 'solar - power'] 
-    },]
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-function add(pokemon){pokemonList.push(pokemon);
+//ability to add a pokemon with necessary features to the list without API referral 
+//and getAll to return full pokemon list   
+function add(pokemon){
+    if (typeof pokemon === "object" && "name" in pokemon)
+        {pokemonList.push(pokemon);
+    } else {console.log("pokemon is not correct");
+    }
 }
-function getAll () {return pokemonList; 
-}
+function getAll () {return pokemonList;}
 
-//created elements attached to ul in index, eventListener added for click and log//
+//elements created attached to ul in index, eventListener added for click and log//
 function addListItem(pokemon) {
     let pokemonList = document.querySelector(".pokemon-list");
     let listpokemon = document.createElement("li");
     let button = document.createElement("button");
-    button.addEventListener('click', function () {showDetails(pokemon)
+    button.addEventListener('click', function (event) {showDetails(pokemon)
     });
     button.innerText = pokemon.name;
     button.classList.add("button-class");
     listpokemon.appendChild(button);
     pokemonList.appendChild(listpokemon);
 }
-function showDetails(pokemon) {console.log(pokemon)
-};
+
+
+//loading list created for each pokemon item
+function loadList(item) {
+    return fetch(apiUrl).then(function(response)
+    {
+    return response.json();
+    }).then(function(json) {
+        json.results.forEach(function (item) {
+            let pokemon = {
+                name:item.name,
+                detailsUrl:item.url
+            };
+            add(pokemon);
+        });
+    }).catch(function (e) {console.error(e);
+    })
+}
+
+//loading details created for each pokemon item
+function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function(response) {
+        return response.json();
+    }).then(function (details){
+            item.imageUrl = details.sprites.front_default;
+            item.height = details.height;
+            item.types = details.types;
+    }).catch(function (e) {
+        console.error(e);
+    });
+}
+
+//showing and loading details from the previous "showDetails" function 
+// defined in the addEventListener parameter
+function showDetails(pokemon) {loadDetails(pokemon).then(function () {
+    console.log(pokemon);
+});
+}   
+
+//returns and closure of the iife
 return {add: add, 
     getAll: getAll,
-    addListItem: addListItem
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
 };
 })();
 
-pokemonRepository.add({name: 'Pikachu', height: 1.4});
-console.log(pokemonRepository.getAll());
-
-//here a forEach loop refering to the protected 'item's in the function of the iife 
-pokemonRepository.getAll().forEach(function(pokemon){
-    pokemonRepository.addListItem(pokemon);
+//calling previous "loading" functions for each pokemon and showing ability to add an item independently
+pokemonRepository.loadList().then(function()
+{pokemonRepository.getAll().forEach(function(pokemon)
+    {pokemonRepository.addListItem(pokemon);
+    });
 });
+pokemonRepository.add({name: 'Pikachu', height: 1.4});
+
+
 
 
 
