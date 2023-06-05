@@ -68,7 +68,7 @@ function loadDetails(item) {
 
 
 
-    // new bootstrap modal code
+// new bootstrap modal code
 function showModal(pokemon) {
 
       let modalTitle = $(".modal-title");
@@ -92,7 +92,8 @@ function showModal(pokemon) {
       modalFooter.append(heightElement);
    
 }
-    
+
+//calling modal and details    
 function showDetails(pokemon) {
   loadDetails(pokemon).then(function() {
   showModal(pokemon)}
@@ -115,7 +116,7 @@ pokemonRepository.loadList().then(function(){
   {pokemonRepository.addListItem(pokemon);
   });
 });
-//pokemonRepository.add({name: 'Pikachu', height: 1.4});
+
 
 
 
