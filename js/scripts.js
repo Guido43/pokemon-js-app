@@ -1,7 +1,7 @@
 //An iife wrapping the [] as newly defined repository
 let pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=24';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=64';
   
 //ability to add a pokemon with necessary features to the list without API referral 
 //and getAll to return full pokemon list   
@@ -79,15 +79,18 @@ function showModal(pokemon) {
       modalTitle.empty();
       modalFooter.empty();
 
-      let nameElement = $("<h5>" + "this pokemon is" + pokemon.name + "<h5>");
+      let nameElement = $("<h4>" + "This pokemon is:"+ "</h4>" + "<h3>" + pokemon.name + "</h3>");
       let imageElement = $('<img class="modal-img" style="width:30%">' + pokemon.imageUurl);
-      let heightElement = $("<p>" + "height : " + pokemon.height + "</p>");
+      let heightElement = $("<p>" + "Their height is : " + pokemon.height + "</p>");
+     
+
 
       imageElement.attr('src', pokemon.imageUrl);
 
       modalTitle.append(nameElement);
       modalBody.append(imageElement);
       modalFooter.append(heightElement);
+   
 }
     
 function showDetails(pokemon) {
