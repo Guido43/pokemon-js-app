@@ -11,20 +11,27 @@ function add(pokemon){
   } else {console.log("pokemon is not correct");
   }
 }
+
 function getAll () {return pokemonList;}
+
+
 
 //elements created attached to ul in index, eventListener added for click and log//
 function addListItem(pokemon) {
-  let pokemonList = document.querySelector('#poke-modal');
-  let listpokemon = document.createElement('li');
+  let pokemonList = document.querySelector('.pokemon-characters');
+  let listItem = document.createElement('list-group-item');
+
   let button = document.createElement('button');
+  button.innerText = pokemon.name
+  button.className = ('btn btn-primary');
+  button.setAttribute('data-toggle', 'modal');
+  button.setAttribute('data-target', '#exampleModal');  
+  
+  listItem.appendChild(button);
+  pokemonList.appendChild(listItem);
   button.addEventListener('click', function () {showDetails(pokemon)
   });
-  button.innerText = pokemon.name;
-  button.classList.add('button-class');
-  listpokemon.appendChild(button);
-  pokemonList.appendChild(listpokemon);
-}
+ }
 
 
 //loading list created for each pokemon item
@@ -59,69 +66,38 @@ function loadDetails(item) {
 }
 
 
-//code for the pokemon-modal display
-let modalContainer = document.querySelector('#modal-container');
 
-  function showModal (title, text) {
-      modalContainer.innerHTML = '';
-      let modal = document.createElement('div');
-      modal.classList.add('modal');
-  
-      let closeButtonElement = document.createElement('button');
-      closeButtonElement.classList.add('modal-close');
-      closeButtonElement.innerText = 'Close';
-      closeButtonElement.addEventListener('click', hideModal);
-  
-      let titleElement = document.createElement('h3');
-      titleElement.innerText = title;
-  
-      let contentElement = document.createElement('p');
-      contentElement.innerText = text;
 
-      let container = document.querySelector('#image-container');
-      let image = document.createElement('img');
-  
+    // new bootstrap modal code
+function showModal(pokemon) {
+
+  console.log(pokemon)
       
-      image.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png'
-    
-  
-      modal.appendChild(closeButtonElement);
-      modal.appendChild(titleElement);
-      modal.appendChild(contentElement);
-      modalContainer.appendChild(modal);
-      modal.appendChild(image);
+      let modalBody = $(".modal-body");
+      let modalTitle = $(".modal-title");
+      let modalHeader = $(".modal-header");
+      let modalFooter = $(".modal-footer");
 
-      modalContainer.classList.add('is-visible');
-    }
+      modalBody.empty();
+      modalTitle.empty();
+      modalFooter.empty();
+
+      let nameElement = $("<h5>" + pokemon.name + "<h5>");
+      let imageElement = $('<img class="modal-img" style="width:50%">' + pokemon.imageUurl);
+      let heightElement = $("<p>" + "height : " + pokemon.height + "</p>");
+
+      imageElement.attr('src', pokemon.imageUrl);
+
+      modalTitle.append(nameElement);
+      modalBody.append(imageElement);
+      modalFooter.append(heightElement);
+}
     
-    
-    //funtion to hide the modal
-    function hideModal() {
-      modalContainer.classList.remove('is-visible');
-    }
-  
-    //responsive closures of the modal
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-        hideModal();  
-      }
-    });
-    
-    modalContainer.addEventListener('click', (e) => {
-      let target = e.target;
-      if (target === modalContainer) {
-        hideModal();
-      }
-    });
-    
-  
-//showing and loading details from the previous "showDetails" function 
-// defined in the addEventListener parameter
-function showDetails(pokemon) {loadDetails(pokemon).then(function()
-  {showModal(' Your Pokemon Is      ' + pokemon.name + '   and their height is  ' 
-  +  pokemon.height);
-})}
-     
+function showDetails(pokemon) {
+  loadDetails(pokemon).then(function() {
+  showModal(pokemon)}
+  );
+}
 
 //returns and closure of the iife
 return {add: add, 
@@ -134,12 +110,12 @@ return {add: add,
 })();
 
 //calling previous "loading" functions for each pokemon and showing ability to add an item independently
-pokemonRepository.loadList().then(function()
-{pokemonRepository.getAll().forEach(function(pokemon)
+pokemonRepository.loadList().then(function(){
+  pokemonRepository.getAll().forEach(function(pokemon)
   {pokemonRepository.addListItem(pokemon);
   });
 });
-pokemonRepository.add({name: 'Pikachu', height: 1.4});
+//pokemonRepository.add({name: 'Pikachu', height: 1.4});
 
 
 
