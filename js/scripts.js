@@ -79,7 +79,7 @@ function showModal(pokemon) {
       modalTitle.empty();
       modalFooter.empty();
 
-      let nameElement = $("<h5>" + pokemon.name + "<h5>");
+      let nameElement = $("<h5>" + "this pokemon is" + pokemon.name + "<h5>");
       let imageElement = $('<img class="modal-img" style="width:30%">' + pokemon.imageUurl);
       let heightElement = $("<p>" + "height : " + pokemon.height + "</p>");
 
