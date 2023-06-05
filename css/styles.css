@@ -71,7 +71,7 @@ h4 {
 
 @media (min-width: 100px) and (max-width: 400px) {
     .btn {
-        font-size: 0.5px
+        font-size: 2px
     }
 }
 
