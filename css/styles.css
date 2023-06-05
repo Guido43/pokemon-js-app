@@ -4,15 +4,11 @@ h2 {text-align: center; padding:5%; color: darkblue;}
 h3 {text-align: center; color:rgb(157, 226, 38);}
 h5 {color:aqua;}
 
-
-.logo {width: 75px; height: 75px;}
-
-.pokemon-characters {list-style-type:none;
-    display: grid; grid-template-columns: repeat(8,2fr);
-}
-li {width: 20px;};
 #navigation {background-color: orange;}
 .navbar {background-color: green}
 .navbar>.container {background-color: rgb(198, 159, 87); justify-content: center}
+.logo {width: 75px; height: 75px;}
+.pokemon-characters {list-style-type:none;
+    display: grid; grid-template-columns: repeat(8,2fr);}
 .btn{background-color: rgb(70, 112, 125); width: 10vw; height: 10vw;}; 
-.list-group-item {background-color: red};
+.list-group-item {background-color: azure};
