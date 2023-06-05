@@ -69,27 +69,27 @@ h4 {
     background-color: var(--first-color)
 }
 
-@media (min-width: 100px) and (max-width: 400px) {
+@media  (min-width: 100px) {
     .btn {
         font-size: 5px
     }
 }
 
-@media (min-width: 400px) and (max-width: 750px) {
+@media (min-width: 400px) {
     .btn {
-        font-size: 8px
+        font-size: 10px
     }
 }
-@media (min-width: 750px) and (max-width: 1024px) {
+@media (min-width: 750px) {
     .btn {
-        font-size: 10px;
+        font-size: 15px;
     }
 }
 ;
 
 @media (min-width: 1024px) {
     .btn {
-        font-size: 15px
+        font-size: 20px
     }
 
     ;
