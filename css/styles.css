@@ -71,11 +71,11 @@ h4 {
 
 @media  (min-width: 100px) {
     .btn {
-        font-size: 5px
+        font-size: 3px
     }
 }
 
-@media (min-width: 400px) {
+@media (min-width: 450px) {
     .btn {
         font-size: 10px
     }
