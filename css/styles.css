@@ -69,7 +69,7 @@ h4 {
     background-color: var(--first-color)
 }
 
-@media (min-width: 500px) and (max-width: 750px) {
+@media (min-width: 300px) and (max-width: 750px) {
     .btn {
         font-size: 5px
     }
